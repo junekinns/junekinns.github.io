@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>June Kim</title>
+  <meta name="description" content="June Kim — machine learning engineer building generative image-editing features at SNOW.">
+  <link rel="icon" href="assets/img/avatar.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="wrap">
+    <a href="#top" class="topnav__name">June Kim</a>
+    <div class="topnav__links">
+      <a href="#news">News</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <!-- ============ ABOUT ============ -->
+  <header class="hero">
+    <img class="hero__avatar" src="assets/img/avatar.jpg" alt="June Kim">
+    <div>
+      <h1>June Kim</h1>
+      <p class="hero__role">Machine Learning Engineer · SNOW Corp.</p>
+      <p>
+        I build the generative image-editing features in SNOW's global camera apps such as
+        <b>LINE Camera</b>, <b>EPIK</b> and <b>SODA</b>, from the diffusion and segmentation models
+        to production GPU serving. Before ML, I worked in real-time graphics on AR camera effects and a 3D world editor.
+      </p>
+      <p>
+        I'm studying computer science at UIUC (online MCS), and I'm interested in world models and robot learning.
+      </p>
+      <p class="hero__links">
+        <a href="mailto:junekinns@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/june3" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/junekinns" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ NEWS ============
+       Newest first. Copy one <li> to add an item. -->
+  <section id="news">
+    <h2><span class="num">01</span>News</h2>
+    <ul class="news">
+      <li><time>Sep 2026</time><span>8th of 15 in the <b>Volumetric Video Challenge</b> (Sparse-View Track), SIGGRAPH Asia 2026 Workshop.</span></li>
+      <li><time>Mar 2026</time><span>14th of 22 in the <b>NTIRE 2026 Shadow Removal Challenge</b>, CVPR 2026 Workshop.</span></li>
+      <li><time>Mar 2026</time><span>Launched AI image expansion in <b>LINE Camera</b>, later in <b>EPIK</b>.</span></li>
+      <li><time>Aug 2025</time><span>Started the Master of Computer Science at <b>UIUC</b> (online).</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ PROJECTS ============
+       Media slots: put a file at the data-src path and it appears automatically.
+         data-kind="video"   → .mp4 (H.264, muted loop, keep under ~5 MB)
+         data-kind="image"   → .jpg / .png / .webp
+         data-kind="compare" → data-before + data-after images (drag slider)
+       Until the file exists, a placeholder with data-label is shown. -->
+  <section id="projects">
+    <h2><span class="num">02</span>Projects</h2>
+
+    <div class="cards">
+
+      <article class="card card--wide">
+        <div class="media" data-kind="video" data-src="assets/media/eraser.mp4" data-label="Video · brush over an object → erased"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>SNOW · 2025 – now</span><span>LINE Camera</span></div>
+          <h3>AI Eraser</h3>
+          <p class="stat">~7M requests / month</p>
+          <p>
+            Brush roughly over anything and it's gone. I designed the system end to end: a SAM-family masking
+            service turns the stroke into a precise mask, and a LoRA-adapted FLUX-family model fills it in while
+            every pixel outside the mask stays untouched.
+          </p>
+          <ul class="tags"><li>FLUX-family</li><li>SAM-family</li><li>LoRA</li><li>PyTorch</li></ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="media" data-kind="video" data-src="assets/media/expansion.mp4" data-label="Video · photo expanding beyond its borders"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>SNOW · 2026 – now</span><span>LINE Camera · EPIK</span></div>
+          <h3>AI Image Expansion</h3>
+          <p class="stat">~450K requests / month</p>
+          <p>
+            Extends a photo beyond its borders. I took it from an experimental workflow to a production pipeline on a
+            FLUX-family model, with color correction and blending so the new area matches the original.
+          </p>
+          <ul class="tags"><li>FLUX-family</li><li>LoRA</li><li>PyTorch</li></ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="media" data-kind="compare" data-before="assets/media/rmbg-before.jpg" data-after="assets/media/rmbg-after.png" data-label="Before / after · background removal"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>SNOW · 2024 – now</span><span>SNOW apps</span></div>
+          <h3>Background Removal</h3>
+          <p>
+            Fine-tuned DIS segmentation models for cleaner subject edges, and added domain-specific adapters so
+            graphics and illustrations are handled as well as photos.
+          </p>
+          <ul class="tags"><li>DIS</li><li>LoRA</li><li>PyTorch</li></ul>
+        </div>
+      </article>
+
+    </div>
+
+    <h3 class="subhead">Earlier: real-time graphics</h3>
+    <div class="cards cards--small">
+
+      <article class="card">
+        <div class="media" data-kind="video" data-src="assets/media/ar-effects.mp4" data-label="Video · AR camera effect"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>SNOW · 2019 – 2022</span></div>
+          <h3>AR Camera Effects</h3>
+          <p>Real-time face-tracking effects for SNOW's camera apps, written in Lua and GLSL.</p>
+          <ul class="tags"><li>GLSL</li><li>Lua</li></ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="media" data-kind="image" data-src="assets/media/zepeto-editor.jpg" data-label="Screenshot · world editor"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>NAVER Z · 2022 – 2023</span></div>
+          <h3>ZEPETO World Editor</h3>
+          <p>Terrain editing and the editor UI for a tool that builds 3D worlds on ZEPETO, a social avatar platform.</p>
+          <ul class="tags"><li>Unity</li><li>C#</li></ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ RESEARCH & CHALLENGES ============ -->
+  <section id="research">
+    <h2><span class="num">03</span>Research &amp; Challenges</h2>
+
+    <div class="cards">
+
+      <article class="card">
+        <div class="media" data-kind="video" data-src="assets/media/vvc-4dgs.mp4" data-label="Video · reconstructed scene, orbiting camera"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>SIGGRAPH Asia 2026 Workshop</span><span class="pill">8th / 15</span></div>
+          <h3>Sparse-View Volumetric Video</h3>
+          <p>Reconstructed dynamic scenes from six cameras with 4D Gaussian splatting.</p>
+          <ul class="tags"><li>4D Gaussian Splatting</li></ul>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="media" data-kind="compare" data-before="assets/media/shadow-before.jpg" data-after="assets/media/shadow-after.jpg" data-label="Before / after · shadow removal"></div>
+        <div class="card__body">
+          <div class="card__meta"><span>NTIRE · CVPR 2026 Workshop</span><span class="pill">14th / 22</span></div>
+          <h3>Single-Image Shadow Removal</h3>
+          <p>NAFNet with multi-loss training. Co-author of the challenge report (under review).</p>
+          <ul class="tags"><li>NAFNet</li></ul>
+        </div>
+      </article>
+
+    </div>
+
+    <ul class="entries">
+      <li>
+        <div class="entries__meta">2019 · POSTECH</div>
+        <div><b>Research intern</b>, Institute of Artificial Intelligence. Visual SLAM with ROS.</div>
+      </li>
+      <li>
+        <div class="entries__meta">2019 · Intel</div>
+        <div><b>AI Drone Competition</b>, team lead. On-board object recognition with OpenVINO.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <h2><span class="num">04</span>Experience</h2>
+    <ul class="entries">
+      <li>
+        <div class="entries__meta">2023 – now</div>
+        <div><b>SNOW Corp.</b> · Machine Learning Engineer</div>
+      </li>
+      <li>
+        <div class="entries__meta">2022 – 2023</div>
+        <div><b>NAVER Z Corp.</b> · Unity Client Engineer</div>
+      </li>
+      <li>
+        <div class="entries__meta">2019 – 2022</div>
+        <div><b>SNOW Corp.</b> · AR Software Engineer</div>
+      </li>
+    </ul>
+
+    <h3 class="subhead">Education</h3>
+    <ul class="entries">
+      <li>
+        <div class="entries__meta">2025 – now</div>
+        <div><b>University of Illinois Urbana-Champaign</b> · Master of Computer Science (online)</div>
+      </li>
+      <li>
+        <div class="entries__meta">2017 – 2020</div>
+        <div><b>Chung-Ang University</b> · B.E. in Digital Imaging Engineering, cum laude</div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="wrap footer">
+  <span>© 2026 June Kim</span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
