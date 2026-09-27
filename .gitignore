@@ -1,1 +1,4 @@
 .DS_Store
+
+# 원본 재료 (사내 캡처 등 비공개 포함) — 커밋 금지
+raw_resources/

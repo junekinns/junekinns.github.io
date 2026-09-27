@@ -3,9 +3,7 @@
   --fg: #16181d;
   --muted: #5d6470;
   --line: #e6e8ec;
-  --card: #f7f8fa;
   --accent: #2b59c3;
-  --accent-soft: #e8eefb;
   --placeholder: #eef0f4;
   --radius: 12px;
   --font: "Inter", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
@@ -17,9 +15,7 @@
     --fg: #e8eaed;
     --muted: #9aa1ad;
     --line: #262a31;
-    --card: #161920;
     --accent: #7ea2ff;
-    --accent-soft: #1b2440;
     --placeholder: #1c2028;
   }
 }
@@ -36,7 +32,7 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 b { font-weight: 600; }
-.wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 .muted { color: var(--muted); }
 
 /* ---------- top nav ---------- */
@@ -70,7 +66,7 @@ h2 {
   margin: 0 0 24px; font-size: 22px; letter-spacing: -0.01em;
 }
 h2 .num { font: 500 13px var(--mono); color: var(--accent); }
-.subhead { margin: 40px 0 16px; font-size: 16px; color: var(--muted); font-weight: 600; }
+.subhead { margin: 40px 0 8px; font-size: 16px; color: var(--muted); font-weight: 600; }
 
 /* ---------- news ---------- */
 .news { list-style: none; margin: 0; padding: 0; }
@@ -81,64 +77,68 @@ h2 .num { font: 500 13px var(--mono); color: var(--accent); }
 .news li:last-child { border-bottom: 0; }
 .news time { font: 13px/1.9 var(--mono); color: var(--muted); }
 
-/* ---------- cards ---------- */
-.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.cards--small .card__body p { font-size: 15px; }
-.card {
-  background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); overflow: hidden;
-  display: flex; flex-direction: column;
+/* ---------- work: role headers ---------- */
+.era { margin: 48px 0 0; }
+.era:first-of-type { margin-top: 0; }
+.era__head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--fg);
 }
-.card__body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
-.card__meta {
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
-  font: 12.5px var(--mono); color: var(--muted);
-}
-.card h3 { margin: 6px 0 4px; font-size: 19px; letter-spacing: -0.01em; }
-.card p { margin: 0 0 10px; }
+.era h3 { margin: 0; font-size: 18px; }
+.era h3 span { color: var(--muted); font-weight: 500; }
+.era time { font: 13px var(--mono); color: var(--muted); white-space: nowrap; }
+.era__overview { margin: 12px 0 0; color: var(--muted); max-width: 720px; }
+
+/* ---------- one project = text + a row of media ---------- */
+.project { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.project h4 { margin: 2px 0 4px; font-size: 19px; letter-spacing: -0.01em; }
+.project p { margin: 0 0 10px; max-width: 720px; }
 .stat { font-weight: 600; color: var(--accent); }
-.pill {
-  background: var(--accent-soft); color: var(--accent);
-  padding: 0 8px; border-radius: 999px; font-weight: 500;
-}
-.tags { list-style: none; margin: auto 0 0; padding: 6px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .tags li {
   font: 12px var(--mono); color: var(--muted);
   border: 1px solid var(--line); border-radius: 6px; padding: 1px 7px;
 }
 
-/* ---------- media slots ---------- */
-.media { position: relative; aspect-ratio: 16 / 9; background: var(--placeholder); overflow: hidden; }
-.media video, .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Media keeps its original aspect ratio (--r = width / height, set on each figure).
+   Single shot: fixed height, capped at the row width.
+   .gallery--fit: several shots share one height and exactly fill the row. */
+.project { --h: 300px; }
+.gallery { display: flex; gap: 12px; margin-top: 16px; }
+.gallery + .gallery { margin-top: 12px; }
+.shot { margin: 0; flex: none; width: 100%; }
+.shot figcaption { margin-top: 6px; font: 12px var(--mono); color: var(--muted); }
+.media {
+  position: relative; overflow: hidden; aspect-ratio: var(--r);
+  width: min(calc(var(--h) * var(--r)), 100%);
+  background: var(--placeholder); border-radius: 10px;
+}
+/* narrow media to the left of the text instead of below it */
+.project--side { --h: 280px; display: grid; grid-template-columns: 210px minmax(0, 1fr); column-gap: 32px; align-items: start; }
+.project--side .gallery { order: -1; }
+.project--side .gallery { margin-top: 0; }
+.project--side .shot { width: auto; }
+/* every side frame is the same 210 x 280; media that isn't 3:4 fits inside instead of being cropped */
+.project--side .media { width: 210px; height: 280px; aspect-ratio: auto; background: var(--mbg, var(--placeholder)); }
+.project--side .media img, .project--side .media video { object-fit: contain; }
+.project--side .gallery--fit .shot { flex: none; width: auto; }
+.project--side .gallery--fit .media { width: calc(var(--h) * var(--r)); }
+.gallery--fit .shot { flex: var(--r) 1 0; width: auto; min-width: 0; }
+.gallery--fit .media { width: 100%; }
+.media video, .media img { width: 100%; height: 100%; display: block; object-fit: cover; }
 .media__placeholder {
-  position: absolute; inset: 12px;
+  position: absolute; inset: 10px;
   border: 1.5px dashed color-mix(in srgb, var(--muted) 45%, transparent); border-radius: 8px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  color: var(--muted); font-size: 14px; text-align: center; padding: 12px;
+  color: var(--muted); font-size: 13px; text-align: center; padding: 10px;
 }
-.media__placeholder code { font: 11.5px var(--mono); opacity: .75; }
+.media__placeholder code { font: 11px var(--mono); opacity: .75; word-break: break-all; }
 
-/* before / after slider */
-.compare { position: absolute; inset: 0; --pos: 50%; }
-.compare img { position: absolute; inset: 0; }
-.compare .compare__after { clip-path: inset(0 0 0 var(--pos)); }
-.compare__line {
-  position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px;
-  background: #fff; box-shadow: 0 0 6px rgba(0,0,0,.4); transform: translateX(-1px); pointer-events: none;
-}
-.compare input {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  opacity: 0; cursor: ew-resize; margin: 0;
-}
-.compare__label {
-  position: absolute; bottom: 8px; font: 11px var(--mono); color: #fff;
-  background: rgba(0,0,0,.45); padding: 1px 6px; border-radius: 4px; pointer-events: none;
-}
 
-/* ---------- simple entries (research, experience) ---------- */
-.entries { list-style: none; margin: 24px 0 0; padding: 0; }
+/* ---------- simple entries (education, certifications) ---------- */
+.entries { list-style: none; margin: 0; padding: 0; }
 .entries li {
-  display: grid; grid-template-columns: 160px 1fr; gap: 16px;
+  display: grid; grid-template-columns: 120px 1fr; gap: 16px;
   padding: 10px 0; border-bottom: 1px solid var(--line);
 }
 .entries li:last-child { border-bottom: 0; }
@@ -146,7 +146,6 @@ h2 .num { font: 500 13px var(--mono); color: var(--accent); }
 
 /* ---------- footer ---------- */
 .footer {
-  display: flex; justify-content: space-between;
   margin-top: 56px; padding-top: 20px; padding-bottom: 40px;
   border-top: 1px solid var(--line); color: var(--muted); font-size: 13px;
 }
@@ -158,17 +157,15 @@ h2 .num { font: 500 13px var(--mono); color: var(--accent); }
   .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 40px; }
   .hero__avatar { width: 112px; height: 112px; }
   .hero h1 { font-size: 30px; }
-  .cards { grid-template-columns: 1fr; }
+  .project { --h: 240px !important; }
+  .project--side { display: flex; flex-direction: column; }
+  .project--side .gallery { margin: 0 0 16px; }
+  .project--side .gallery--fit .shot { flex: var(--r) 1 0; min-width: 0; }
+  .project--side .gallery--fit .media { width: 100%; }
+
+  .era__head { flex-direction: column; gap: 2px; }
   .news li, .entries li { grid-template-columns: 1fr; gap: 0; }
 }
 @media (max-width: 420px) {
   .topnav__name { display: none; }
-}
-
-/* featured card: media left, text right */
-.card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; }
-.card--wide .media { aspect-ratio: auto; min-height: 300px; }
-@media (max-width: 720px) {
-  .card--wide { display: flex; }
-  .card--wide .media { aspect-ratio: 16 / 9; min-height: 0; }
 }

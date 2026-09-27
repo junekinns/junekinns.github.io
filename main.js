@@ -1,4 +1,4 @@
-// Fills each .media slot with its video / image / before-after pair.
+// Fills each .media slot with its video or image.
 // If the file isn't there yet, a labelled placeholder stays in its place.
 
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -30,7 +30,7 @@ function loadImage(src) {
 }
 
 for (const slot of document.querySelectorAll(".media")) {
-  const { kind, src, before, after } = slot.dataset;
+  const { kind, src } = slot.dataset;
   const label = slot.dataset.label || "";
 
   if (kind === "video") {
@@ -54,25 +54,5 @@ for (const slot of document.querySelectorAll(".media")) {
       box.replaceWith(img);
     }).catch(() => {});
   }
-
-  if (kind === "compare") {
-    const box = placeholder(slot, [before, after]);
-    Promise.all([loadImage(before), loadImage(after)]).then(([a, b]) => {
-      a.alt = "Before"; b.alt = "After";
-      b.className = "compare__after";
-      const wrap = document.createElement("div");
-      wrap.className = "compare";
-      const range = Object.assign(document.createElement("input"), {
-        type: "range", min: 0, max: 100, value: 50,
-      });
-      range.setAttribute("aria-label", "Drag to compare before and after");
-      range.addEventListener("input", () => wrap.style.setProperty("--pos", range.value + "%"));
-      wrap.innerHTML =
-        '<span class="compare__label" style="left:8px">Before</span>' +
-        '<span class="compare__label" style="right:8px">After</span>';
-      wrap.prepend(a, b);
-      wrap.append(Object.assign(document.createElement("div"), { className: "compare__line" }), range);
-      box.replaceWith(wrap);
-    }).catch(() => {});
-  }
 }
+

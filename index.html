@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>June Kim</title>
-  <meta name="description" content="June Kim — machine learning engineer building generative image-editing features at SNOW.">
+  <meta name="description" content="June Kim, machine learning engineer working on AI photo editing.">
   <link rel="icon" href="assets/img/avatar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,8 @@
     <a href="#top" class="topnav__name">June Kim</a>
     <div class="topnav__links">
       <a href="#news">News</a>
-      <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#education">Education</a>
     </div>
   </div>
 </nav>
@@ -34,14 +33,11 @@
       <h1>June Kim</h1>
       <p class="hero__role">Machine Learning Engineer · SNOW Corp.</p>
       <p>
-        I build the generative image-editing features in SNOW's global camera apps such as
-        <b>LINE Camera</b>, <b>EPIK</b> and <b>SODA</b>, from the diffusion and segmentation models
-        to production GPU serving. Before ML, I worked in real-time graphics on AR camera effects and a 3D world editor.
-      </p>
-      <p>
-        I'm studying computer science at UIUC (online MCS), and I'm interested in world models and robot learning.
+        Works on AI photo editing. Came to ML from graphics, first with AR camera effects at SNOW, then with 3D
+        world-building tools at NAVER Z. Currently in UIUC's online MS in Computer Science.
       </p>
       <p class="hero__links">
+        <a href="assets/June_Kim_CV.pdf" target="_blank" rel="noopener">CV</a>
         <a href="mailto:junekinns@gmail.com">Email</a>
         <a href="https://www.linkedin.com/in/june3" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com/junekinns" target="_blank" rel="noopener">GitHub</a>
@@ -50,161 +46,195 @@
   </header>
 
   <!-- ============ NEWS ============
-       Newest first. Copy one <li> to add an item. -->
+       Career and education milestones only, newest first. -->
   <section id="news">
     <h2><span class="num">01</span>News</h2>
     <ul class="news">
       <li><time>Sep 2026</time><span>8th of 15 in the <b>Volumetric Video Challenge</b> (Sparse-View Track), SIGGRAPH Asia 2026 Workshop.</span></li>
       <li><time>Mar 2026</time><span>14th of 22 in the <b>NTIRE 2026 Shadow Removal Challenge</b>, CVPR 2026 Workshop.</span></li>
-      <li><time>Mar 2026</time><span>Launched AI image expansion in <b>LINE Camera</b>, later in <b>EPIK</b>.</span></li>
-      <li><time>Aug 2025</time><span>Started the Master of Computer Science at <b>UIUC</b> (online).</span></li>
+      <li><time>Aug 2025</time><span>Started the online MS in Computer Science at <b>UIUC</b>.</span></li>
+      <li><time>Aug 2024</time><span>Joined <b>SNOW AI Lab</b>.</span></li>
+      <li><time>Aug 2023</time><span>Returned to <b>SNOW</b> as a machine learning engineer.</span></li>
+      <li><time>Apr 2022</time><span>Joined <b>NAVER Z</b> as a Unity developer on ZEPETO.</span></li>
+      <li><time>Jun 2020</time><span>Joined <b>SNOW</b> full-time as an AR software engineer.</span></li>
+      <li><time>Feb 2020</time><span>Graduated cum laude from <b>Chung-Ang University</b> (B.E. in Digital Imaging Engineering).</span></li>
+      <li><time>Dec 2019</time><span>Started at <b>SNOW</b> as an AR development intern.</span></li>
+      <li><time>Oct 2019</time><span>Research intern at the <b>POSTECH</b> Institute of Artificial Intelligence.</span></li>
     </ul>
   </section>
 
-  <!-- ============ PROJECTS ============
-       Media slots: put a file at the data-src path and it appears automatically.
-         data-kind="video"   → .mp4 (H.264, muted loop, keep under ~5 MB)
-         data-kind="image"   → .jpg / .png / .webp
-         data-kind="compare" → data-before + data-after images (drag slider)
-       Until the file exists, a placeholder with data-label is shown. -->
-  <section id="projects">
-    <h2><span class="num">02</span>Projects</h2>
+  <!-- ============ WORK ============
+       Grouped by role, newest first.
+       Layout per project:
+         .project--side  narrow media (portrait) sits to the left of the text
+         default         media row below the text
+       Media: <figure class="shot" style="--r: width/height as a decimal"> keeps the original aspect ratio.
+       A row with several shots gets "gallery--fit": equal heights, filling the row.
+       If a file is missing, a placeholder shows instead. -->
+  <section id="work">
+    <h2><span class="num">02</span>Work</h2>
 
-    <div class="cards">
-
-      <article class="card card--wide">
-        <div class="media" data-kind="video" data-src="assets/media/eraser.mp4" data-label="Video · brush over an object → erased"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>SNOW · 2025 – now</span><span>LINE Camera</span></div>
-          <h3>AI Eraser</h3>
-          <p class="stat">~7M requests / month</p>
-          <p>
-            Brush roughly over anything and it's gone. I designed the system end to end: a SAM-family masking
-            service turns the stroke into a precise mask, and a LoRA-adapted FLUX-family model fills it in while
-            every pixel outside the mask stays untouched.
-          </p>
-          <ul class="tags"><li>FLUX-family</li><li>SAM-family</li><li>LoRA</li><li>PyTorch</li></ul>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="media" data-kind="video" data-src="assets/media/expansion.mp4" data-label="Video · photo expanding beyond its borders"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>SNOW · 2026 – now</span><span>LINE Camera · EPIK</span></div>
-          <h3>AI Image Expansion</h3>
-          <p class="stat">~450K requests / month</p>
-          <p>
-            Extends a photo beyond its borders. I took it from an experimental workflow to a production pipeline on a
-            FLUX-family model, with color correction and blending so the new area matches the original.
-          </p>
-          <ul class="tags"><li>FLUX-family</li><li>LoRA</li><li>PyTorch</li></ul>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="media" data-kind="compare" data-before="assets/media/rmbg-before.jpg" data-after="assets/media/rmbg-after.png" data-label="Before / after · background removal"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>SNOW · 2024 – now</span><span>SNOW apps</span></div>
-          <h3>Background Removal</h3>
-          <p>
-            Fine-tuned DIS segmentation models for cleaner subject edges, and added domain-specific adapters so
-            graphics and illustrations are handled as well as photos.
-          </p>
-          <ul class="tags"><li>DIS</li><li>LoRA</li><li>PyTorch</li></ul>
-        </div>
-      </article>
-
+    <!-- ===== SNOW AI Lab ===== -->
+    <div class="era">
+      <div class="era__head">
+        <h3>SNOW AI Lab <span>· Machine Learning Engineer</span></h3>
+        <time>Aug 2024 – now</time>
+      </div>
+      <p class="era__overview">AI editing features for camera apps.</p>
     </div>
 
-    <h3 class="subhead">Earlier: real-time graphics</h3>
-    <div class="cards cards--small">
+    <article class="project project--side">
+      <div class="project__body">
+        <h4>AI Eraser</h4>
+        <p class="stat">~2.8M requests / month</p>
+        <p>
+          Designed the eraser system and built both of its APIs, masking and inpainting. Only the masked area is regenerated and blended seamlessly into the original.
+        </p>
+        <p>
+          With a standard loss, the inpainting LoRA kept redrawing erased objects and drifting color at the mask boundary, and more data didn't help. Reweighting the mask interior and boundary, plus a term that keeps everything outside the mask unchanged, reduced both noticeably.
+        </p>
+        <p>
+          Tested masking backbones of several sizes and chose the one that best balanced quality and serving cost.
+        </p>
+        <ul class="tags"><li>FLUX</li><li>SAM</li><li>LoRA</li></ul>
+      </div>
+      <div class="gallery">
+        <figure class="shot" style="--r: 0.7500"><div class="media" data-kind="video" data-src="assets/media/eraser.mp4" data-label="AI eraser demo"></div></figure>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="media" data-kind="video" data-src="assets/media/ar-effects.mp4" data-label="Video · AR camera effect"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>SNOW · 2019 – 2022</span></div>
-          <h3>AR Camera Effects</h3>
-          <p>Real-time face-tracking effects for SNOW's camera apps, written in Lua and GLSL.</p>
-          <ul class="tags"><li>GLSL</li><li>Lua</li></ul>
-        </div>
-      </article>
+    <article class="project project--side">
+      <div class="project__body">
+        <h4>AI Image Expansion</h4>
+        <p class="stat">~550K requests / month</p>
+        <p>
+          Migrated outpainting from a node-based workflow to a production pipeline, with the same seamless blending and multi-pass generation for large expansions.
+        </p>
+        <ul class="tags"><li>FLUX</li><li>LoRA</li></ul>
+      </div>
+      <div class="gallery">
+        <figure class="shot" style="--r: 0.7500"><div class="media" data-kind="video" data-src="assets/media/expansion.mp4" data-label="AI image expansion demo"></div></figure>
+      </div>
+    </article>
 
-      <article class="card">
-        <div class="media" data-kind="image" data-src="assets/media/zepeto-editor.jpg" data-label="Screenshot · world editor"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>NAVER Z · 2022 – 2023</span></div>
-          <h3>ZEPETO World Editor</h3>
-          <p>Terrain editing and the editor UI for a tool that builds 3D worlds on ZEPETO, a social avatar platform.</p>
-          <ul class="tags"><li>Unity</li><li>C#</li></ul>
-        </div>
-      </article>
+    <article class="project">
+      <div class="project__body">
+        <h4>NSFW Detection</h4>
+        <p>
+          Built a system to tune NSFW models on qualitative ratings from many employees, and trained an in-house model on a dataset made for it.
+        </p>
+      </div>
+    </article>
 
+    <article class="project project--side">
+      <div class="project__body">
+        <h4>AI Cutout</h4>
+        <p class="stat">~14M requests / month</p>
+        <p>
+          Segmentation models for cutout, with a router for different image domains.
+        </p>
+        <p>
+          Built the data engine and crawler behind the model. The engine keeps humans in the loop, since the model stopped improving on its own labels.
+        </p>
+        <ul class="tags"><li>DIS</li><li>LoRA</li></ul>
+      </div>
+      <div class="gallery">
+        <figure class="shot" style="--r: 0.5625; --mbg: #f3f3f3"><div class="media" data-kind="image" data-src="assets/media/cutout.webp" data-label="AI cutout"></div></figure>
+      </div>
+    </article>
+
+    <!-- ===== SNOW ML (2023–2024) ===== -->
+    <div class="era">
+      <div class="era__head">
+        <h3>SNOW <span>· Machine Learning Engineer</span></h3>
+        <time>Aug 2023 – Aug 2024</time>
+      </div>
+      <p class="era__overview">Pilot projects.</p>
     </div>
+
+    <article class="project">
+      <div class="project__body">
+        <h4>Virtual Try-On</h4>
+        <p>
+          Compared several open try-on models. The best one labeled every top as "upper wear" and lost details like hoods; fine-tuning it with garment captions fixed that.
+        </p>
+      </div>
+      <div class="gallery">
+        <figure class="shot" style="--r: 4.1098">
+          <div class="media" data-kind="image" data-src="assets/media/vton-caption.jpg" data-label="Try-on comparison"></div>
+          <figcaption>Person · garment · base model · fine-tuned · reference</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- ===== NAVER Z ===== -->
+    <div class="era">
+      <div class="era__head">
+        <h3>NAVER Z <span>· Unity Developer</span></h3>
+        <time>Apr 2022 – Aug 2023</time>
+      </div>
+      <p class="era__overview">3D map creation tools for ZEPETO, an avatar social app.</p>
+    </div>
+
+    <article class="project">
+      <div class="project__body">
+        <h4>ZEPETO build it &amp; World Editor</h4>
+        <p>
+          Helped build the web version of build it from scratch through launch, including the server-side world data migration that kept existing worlds working. Also optimized terrain rendering with custom shaders.
+        </p>
+      </div>
+      <div class="gallery gallery--fit">
+        <figure class="shot" style="--r: 1.5896">
+          <div class="media" data-kind="image" data-src="assets/media/zepeto-terrain.jpg" data-label="Terrain material brush"></div>
+          <figcaption>Terrain material brush</figcaption>
+        </figure>
+        <figure class="shot" style="--r: 1.7778">
+          <div class="media" data-kind="image" data-src="assets/media/zepeto-world.jpg" data-label="A world built in build it"></div>
+          <figcaption>A world built in build it</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- ===== SNOW AR ===== -->
+    <div class="era">
+      <div class="era__head">
+        <h3>SNOW <span>· AR Software Engineer</span></h3>
+        <time>Dec 2019 – Apr 2022</time>
+      </div>
+      <p class="era__overview">Real-time camera effects, written in Lua and GLSL.</p>
+    </div>
+
+    <article class="project">
+      <div class="project__body">
+        <h4>No-Code Effect Tool</h4>
+        <p>
+          Turned common effects like split screens, 3D transitions and hair color into templates artists could reuse without writing code. Also made plugins for the in-house authoring tools.
+        </p>
+      </div>
+      <div class="gallery gallery--fit">
+        <figure class="shot" style="--r: 1.3095">
+          <div class="media" data-kind="image" data-src="assets/media/ar-templates.jpg" data-label="Effect list"></div>
+          <figcaption>Split screen, 3D transitions, hair color and more</figcaption>
+        </figure>
+        <figure class="shot" style="--r: 1.4888">
+          <div class="media" data-kind="image" data-src="assets/media/sparkle.jpg" data-label="Sparkle"></div>
+          <figcaption>Sparkle</figcaption>
+        </figure>
+        <figure class="shot" style="--r: 1.0000">
+          <div class="media" data-kind="video" data-src="assets/media/face-fish.mp4" data-label="3D character"></div>
+          <figcaption>3D character</figcaption>
+        </figure>
+      </div>
+    </article>
   </section>
 
-  <!-- ============ RESEARCH & CHALLENGES ============ -->
-  <section id="research">
-    <h2><span class="num">03</span>Research &amp; Challenges</h2>
-
-    <div class="cards">
-
-      <article class="card">
-        <div class="media" data-kind="video" data-src="assets/media/vvc-4dgs.mp4" data-label="Video · reconstructed scene, orbiting camera"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>SIGGRAPH Asia 2026 Workshop</span><span class="pill">8th / 15</span></div>
-          <h3>Sparse-View Volumetric Video</h3>
-          <p>Reconstructed dynamic scenes from six cameras with 4D Gaussian splatting.</p>
-          <ul class="tags"><li>4D Gaussian Splatting</li></ul>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="media" data-kind="compare" data-before="assets/media/shadow-before.jpg" data-after="assets/media/shadow-after.jpg" data-label="Before / after · shadow removal"></div>
-        <div class="card__body">
-          <div class="card__meta"><span>NTIRE · CVPR 2026 Workshop</span><span class="pill">14th / 22</span></div>
-          <h3>Single-Image Shadow Removal</h3>
-          <p>NAFNet with multi-loss training. Co-author of the challenge report (under review).</p>
-          <ul class="tags"><li>NAFNet</li></ul>
-        </div>
-      </article>
-
-    </div>
-
-    <ul class="entries">
-      <li>
-        <div class="entries__meta">2019 · POSTECH</div>
-        <div><b>Research intern</b>, Institute of Artificial Intelligence. Visual SLAM with ROS.</div>
-      </li>
-      <li>
-        <div class="entries__meta">2019 · Intel</div>
-        <div><b>AI Drone Competition</b>, team lead. On-board object recognition with OpenVINO.</div>
-      </li>
-    </ul>
-  </section>
-
-  <!-- ============ EXPERIENCE ============ -->
-  <section id="experience">
-    <h2><span class="num">04</span>Experience</h2>
-    <ul class="entries">
-      <li>
-        <div class="entries__meta">2023 – now</div>
-        <div><b>SNOW Corp.</b> · Machine Learning Engineer</div>
-      </li>
-      <li>
-        <div class="entries__meta">2022 – 2023</div>
-        <div><b>NAVER Z Corp.</b> · Unity Client Engineer</div>
-      </li>
-      <li>
-        <div class="entries__meta">2019 – 2022</div>
-        <div><b>SNOW Corp.</b> · AR Software Engineer</div>
-      </li>
-    </ul>
-
-    <h3 class="subhead">Education</h3>
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <h2><span class="num">03</span>Education</h2>
     <ul class="entries">
       <li>
         <div class="entries__meta">2025 – now</div>
-        <div><b>University of Illinois Urbana-Champaign</b> · Master of Computer Science (online)</div>
+        <div><b>University of Illinois Urbana-Champaign</b> · MS in Computer Science (online)</div>
       </li>
       <li>
         <div class="entries__meta">2017 – 2020</div>
