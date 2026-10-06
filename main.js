@@ -39,12 +39,15 @@ for (const slot of document.querySelectorAll(".media")) {
       muted: true, loop: true, playsInline: true, preload: "metadata",
     });
     video.setAttribute("aria-label", label);
-    video.addEventListener("loadeddata", () => {
+    // iOS Safari never fires "loadeddata" with preload="metadata" (it fetches
+    // no frame data until playback), so swap in on "loadedmetadata" instead.
+    video.addEventListener("loadedmetadata", () => {
       box.remove();
       slot.append(video);
       viewer.observe(video);
     }, { once: true });
     video.src = src;
+    video.load();
   }
 
   if (kind === "image") {
