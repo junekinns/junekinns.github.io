@@ -87,7 +87,6 @@
     <article class="project project--side">
       <div class="project__body">
         <h4>AI Eraser</h4>
-        <p class="stat">~2.8M requests / month</p>
         <p>
           Designed the eraser system and built both of its APIs, masking and inpainting. Only the masked area is regenerated and blended seamlessly into the original.
         </p>
@@ -97,7 +96,7 @@
         <p>
           Tested masking backbones of several sizes and chose the one that best balanced quality and serving cost.
         </p>
-        <ul class="tags"><li>FLUX</li><li>SAM</li><li>LoRA</li></ul>
+        <ul class="tags"><li>diffusion</li><li>segmentation</li><li>LoRA</li></ul>
       </div>
       <div class="gallery">
         <figure class="shot" style="--r: 0.7500"><div class="media" data-kind="video" data-src="assets/media/eraser.mp4" data-label="AI eraser demo"></div></figure>
@@ -107,37 +106,26 @@
     <article class="project project--side">
       <div class="project__body">
         <h4>AI Image Expansion</h4>
-        <p class="stat">~550K requests / month</p>
         <p>
-          Migrated outpainting from a node-based workflow to a production pipeline, with the same seamless blending and multi-pass generation for large expansions.
+          Migrated outpainting from a node-based workflow to a production pipeline, with the same seamless blending and support for large expansions.
         </p>
-        <ul class="tags"><li>FLUX</li><li>LoRA</li></ul>
+        <ul class="tags"><li>diffusion</li><li>LoRA</li></ul>
       </div>
       <div class="gallery">
         <figure class="shot" style="--r: 0.7500"><div class="media" data-kind="video" data-src="assets/media/expansion.mp4" data-label="AI image expansion demo"></div></figure>
       </div>
     </article>
 
-    <article class="project">
-      <div class="project__body">
-        <h4>NSFW Detection</h4>
-        <p>
-          Built a system to tune NSFW models on qualitative ratings from many employees, and trained an in-house model on a dataset made for it.
-        </p>
-      </div>
-    </article>
-
     <article class="project project--side">
       <div class="project__body">
         <h4>AI Cutout</h4>
-        <p class="stat">~14M requests / month</p>
         <p>
-          Segmentation models for cutout, with a router for different image domains.
+          Segmentation models for cutout, with routing for different image domains.
         </p>
         <p>
-          Built the data engine and crawler behind the model. The engine keeps humans in the loop, since the model stopped improving on its own labels.
+          Training and evaluation data comes from recurring failures in real user images, with human review in the loop, since the model stopped improving on its own labels.
         </p>
-        <ul class="tags"><li>DIS</li><li>LoRA</li></ul>
+        <ul class="tags"><li>segmentation</li><li>fine-tuning</li></ul>
       </div>
       <div class="gallery">
         <figure class="shot" style="--r: 0.5625; --mbg: #f3f3f3"><div class="media" data-kind="image" data-src="assets/media/cutout.webp" data-label="AI cutout"></div></figure>
