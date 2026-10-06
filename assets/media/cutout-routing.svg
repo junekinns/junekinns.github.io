@@ -1,19 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
   <defs>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#64748B"/>
+      <path d="M0 0 L10 5 L0 10 z" fill="#7C93AC"/>
     </marker>
   </defs>
   <style>
-    .box { fill:#FFFFFF; stroke:#CBD5E1; stroke-width:1.5; rx:14; }
-    .box--accent { fill:#334E68; stroke:#334E68; }
+    .box { fill:#FFFFFF; stroke:#CBD5E1; stroke-width:1.5; }
+    .box--accent { fill:#334E68; stroke:#4A6A8C; }
     .box--branch { fill:#F1F5F9; stroke:#CBD5E1; stroke-width:1.5; }
     .t { font-size:21px; fill:#111827; font-weight:600; }
     .t--sub { font-size:15px; fill:#64748B; font-weight:400; }
     .t--inv { font-size:21px; fill:#FFFFFF; font-weight:600; }
-    .t--lab { font-size:14px; fill:#334E68; font-weight:600; letter-spacing:0.08em; }
-    .edge { stroke:#64748B; stroke-width:1.8; fill:none; marker-end:url(#arr); }
+    .t--subinv { font-size:15px; fill:#B9C8D8; font-weight:400; }
+    .t--lab { font-size:14px; fill:#8AA3BC; font-weight:600; letter-spacing:0.08em; }
+    .edge { stroke:#7C93AC; stroke-width:1.8; fill:none; marker-end:url(#arr);
+            stroke-dasharray:7 7; animation: flow 1.1s linear infinite; }
+    .dot { fill:#60A5FA; }
+    .dot--halo { fill:#60A5FA; opacity:0.25; }
+    @keyframes flow { to { stroke-dashoffset:-14; } }
+    @media (prefers-reduced-motion: reduce) {
+      .edge { animation:none; stroke-dasharray:none; }
+      .dot, .dot--halo { display:none; }
+    }
   </style>
+
+  <!-- traveling data dots (drawn first so they pass under the boxes) -->
+  <g>
+    <circle class="dot--halo" r="9">
+      <animateMotion dur="3.2s" repeatCount="indefinite"
+        path="M115 230 H365 C 505 230, 505 120, 600 120 H740 C 870 120, 870 230, 970 230 H1125"/>
+    </circle>
+    <circle class="dot" r="4.5">
+      <animateMotion dur="3.2s" repeatCount="indefinite"
+        path="M115 230 H365 C 505 230, 505 120, 600 120 H740 C 870 120, 870 230, 970 230 H1125"/>
+    </circle>
+    <circle class="dot--halo" r="9">
+      <animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite"
+        path="M115 230 H365 C 505 230, 505 340, 600 340 H740 C 870 340, 870 230, 970 230 H1125"/>
+    </circle>
+    <circle class="dot" r="4.5">
+      <animateMotion dur="3.2s" begin="1.6s" repeatCount="indefinite"
+        path="M115 230 H365 C 505 230, 505 340, 600 340 H740 C 870 340, 870 230, 970 230 H1125"/>
+    </circle>
+  </g>
+
+  <!-- edges -->
+  <path class="edge" d="M200 230 H258"/>
+  <path class="edge" d="M465 215 C 505 200, 505 120, 533 120"/>
+  <path class="edge" d="M465 245 C 505 260, 505 340, 533 340"/>
+  <path class="edge" d="M830 120 C 870 120, 870 212, 898 216"/>
+  <path class="edge" d="M830 340 C 870 340, 870 248, 898 244"/>
+  <path class="edge" d="M1035 230 H1073"/>
 
   <!-- User photo -->
   <rect class="box" x="30" y="185" width="170" height="90" rx="14"/>
@@ -23,7 +60,7 @@
   <!-- Router -->
   <rect class="box box--accent" x="265" y="185" width="200" height="90" rx="14"/>
   <text class="t--inv" x="365" y="224" text-anchor="middle">Domain router</text>
-  <text class="t--sub" x="365" y="250" text-anchor="middle" fill="#CBD5E1">lightweight classifier</text>
+  <text class="t--subinv" x="365" y="250" text-anchor="middle">lightweight classifier</text>
 
   <!-- Branch: photo -->
   <rect class="box box--branch" x="540" y="75" width="290" height="90" rx="14"/>
@@ -46,12 +83,4 @@
   <rect class="box box--accent" x="1080" y="185" width="90" height="90" rx="14"/>
   <text class="t--inv" x="1125" y="224" text-anchor="middle">Cut</text>
   <text class="t--inv" x="1125" y="250" text-anchor="middle">out</text>
-
-  <!-- Edges -->
-  <path class="edge" d="M200 230 H258"/>
-  <path class="edge" d="M465 215 C 505 200, 505 120, 533 120"/>
-  <path class="edge" d="M465 245 C 505 260, 505 340, 533 340"/>
-  <path class="edge" d="M830 120 C 870 120, 870 212, 898 216"/>
-  <path class="edge" d="M830 340 C 870 340, 870 248, 898 244"/>
-  <path class="edge" d="M1035 230 H1073"/>
 </svg>
