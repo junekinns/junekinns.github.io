@@ -81,7 +81,7 @@
         <h3>SNOW AI Lab <span>· Machine Learning Engineer</span></h3>
         <time>Aug 2024 – now</time>
       </div>
-      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month.</p>
+      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. I designed and shipped the eraser and image expansion, and keep upgrading them as better models come out.</p>
     </div>
 
     <article class="project project--side">
@@ -107,7 +107,7 @@
       <div class="project__body">
         <h4>AI Image Expansion</h4>
         <p>
-          Migrated outpainting from a node-based workflow to a production pipeline, with the same seamless blending and support for large expansions.
+          Designed image expansion from the first prototype to launch. Moved outpainting from a node-based workflow to a production pipeline, with the same seamless blending; very large expansions run in several passes.
         </p>
         <ul class="tags"><li>diffusion</li><li>LoRA</li></ul>
       </div>
@@ -132,6 +132,29 @@
           <div class="media" data-kind="image" data-src="assets/media/cutout-routing.svg" data-label="Domain routing"></div>
           <figcaption>A photo through the live pipeline</figcaption>
         </figure>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project__body">
+        <h4>Inference APIs</h4>
+        <p>
+          Wrote the GPU inference services behind these features with BentoML, LitServe, and FastAPI, from model loading and pre- and post-processing to error handling the apps can act on. Deployment and capacity are run together with the infrastructure team.
+        </p>
+        <p>
+          Cut the eraser's mask step about 8&times; with a smaller model, bf16, and GPU-side transforms, then moved back to the larger model after side-by-side quality checks.
+        </p>
+        <ul class="tags"><li>serving</li><li>GPU inference</li></ul>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project__body">
+        <h4>Content Safety</h4>
+        <p>
+          Trained the in-house NSFW model that checks generated images, on a dataset built for it, and set up an internal evaluation system to tune it.
+        </p>
+        <ul class="tags"><li>classification</li><li>evaluation</li></ul>
       </div>
     </article>
 
@@ -260,7 +283,7 @@
       </li>
       <li>
         <div class="entries__meta">Serving</div>
-        <div>LitServe, BentoML, Triton, FastAPI, Docker, Kubernetes</div>
+        <div>LitServe, BentoML, FastAPI, Docker, Kubernetes</div>
       </li>
       <li>
         <div class="entries__meta">Graphics</div>
