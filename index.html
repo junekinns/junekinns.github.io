@@ -52,8 +52,6 @@
   <section id="news">
     <h2><span class="num">01</span>News</h2>
     <ul class="news">
-      <li><time>Sep 2026</time><span>8th of 15 in the <b>Volumetric Video Challenge</b> (Sparse-View Track), SIGGRAPH Asia 2026 Workshop.</span></li>
-      <li><time>Mar 2026</time><span>14th of 22 in the <b>NTIRE 2026 Shadow Removal Challenge</b>, CVPR 2026 Workshop.</span></li>
       <li><time>Aug 2025</time><span>Started the online MS in Computer Science at <b>UIUC</b>.</span></li>
       <li><time>Aug 2023</time><span>Returned to <b>SNOW</b> as a machine learning engineer; moved into <b>SNOW AI Lab</b> in Aug 2024.</span></li>
       <li><time>Apr 2022</time><span>Joined <b>NAVER Z</b> as a Unity developer on ZEPETO.</span></li>
@@ -81,7 +79,7 @@
         <h3>SNOW AI Lab <span>· Machine Learning Engineer</span></h3>
         <time>Aug 2024 – now</time>
       </div>
-      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. I designed and shipped the eraser and image expansion, and keep upgrading them as better models come out. I also write the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
+      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. Designed and shipped the eraser and image expansion, and continues to improve both. Also writes the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
     </div>
 
     <article class="project project--side">
@@ -107,7 +105,7 @@
       <div class="project__body">
         <h4>AI Image Expansion</h4>
         <p>
-          Designed image expansion from the first prototype to launch. Moved outpainting from a node-based workflow to a production pipeline, with the same seamless blending; very large expansions run in several passes.
+          Built image expansion from the first prototype to launch. Moved outpainting from a node-based workflow to a production pipeline without losing blend quality; very large expansions run in several passes.
         </p>
         <ul class="tags"><li>diffusion</li><li>LoRA</li></ul>
       </div>
@@ -120,10 +118,10 @@
       <div class="project__body">
         <h4>AI Cutout</h4>
         <p>
-          Segmentation models for cutout. A lightweight router classifies each image and picks the base model or a domain-tuned adapter, so one deployment covers image domains the base was never trained for.
+          Added domain routing to cutout's segmentation. A lightweight router classifies each image and picks the base model or a domain-tuned adapter, so one deployment also handles graphics and patterns the base model struggled with.
         </p>
         <p>
-          Training and evaluation data comes from recurring failures in real user images, with human review in the loop, since the model stopped improving on its own labels.
+          Training and evaluation data comes from recurring failures in real user images, checked by people, because retraining on the model's own labels had stopped helping.
         </p>
         <ul class="tags"><li>segmentation</li><li>fine-tuning</li></ul>
       </div>
@@ -139,7 +137,7 @@
       <div class="project__body">
         <h4>Content Safety</h4>
         <p>
-          Trained the in-house NSFW model that checks generated images, on a dataset built for it, and set up an internal evaluation system to tune it.
+          Trained the in-house NSFW model that checks generated images, built its dataset, and set up an internal evaluation system to tune it.
         </p>
         <ul class="tags"><li>classification</li><li>evaluation</li></ul>
       </div>
@@ -182,7 +180,7 @@
       <div class="project__body">
         <h4>ZEPETO build it &amp; World Editor</h4>
         <p>
-          Helped build the web version of build it from scratch through launch, including the server-side world data migration that kept existing worlds working. Also optimized terrain rendering with custom shaders.
+          Part of the team that took the web version of build it from scratch to launch, and handled the server-side world data migration that kept existing worlds working. Also optimized terrain rendering with custom shaders.
         </p>
       </div>
       <div class="gallery gallery--fit">
@@ -210,7 +208,7 @@
       <div class="project__body">
         <h4>Brand Partnership Filters</h4>
         <p>
-          Face-based AR filters built with partner brands and shipped in SNOW's apps. Two with public footage:
+          Face-based AR filters built with partner brands and shipped in SNOW's apps. Public examples:
           <a href="https://youtu.be/4NdqvH-oWIs" target="_blank" rel="noopener">PUBG: NEW STATE 3D filter</a> ·
           <a href="https://youtube.com/shorts/MV7szw4_x6U" target="_blank" rel="noopener">VANS virtual try-on</a> ·
           <a href="https://www.jobplanet.co.kr/contents/news-1741" target="_blank" rel="noopener">press interview on the Mad Monster filter</a>
@@ -270,7 +268,7 @@
       </li>
       <li>
         <div class="entries__meta">Serving</div>
-        <div>LitServe, BentoML, FastAPI, Docker, Kubernetes</div>
+        <div>LitServe, BentoML, FastAPI, Docker</div>
       </li>
       <li>
         <div class="entries__meta">Graphics</div>
