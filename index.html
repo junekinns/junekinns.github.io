@@ -82,6 +82,20 @@
       <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. Designed and shipped the eraser and image expansion, and continues to improve both. Now also building generative retouching, starting with lips. Writes the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
     </div>
 
+    <!-- Generative Retouching: no media yet. Add a gallery row (before/after lips, tool screenshot) when available. -->
+    <article class="project">
+      <div class="project__body">
+        <h4>Generative Retouching</h4>
+        <p>
+          Probed a reference lip-gloss effect with crafted inputs. It added gloss and fine texture that were not in the input, so no texture overlay or shader could produce it. Reproduced it with a LoRA on a distilled FLUX-family model trained from a handful of before/after pairs.
+        </p>
+        <p>
+          A LoRA trained on the base model lost much of its effect under the four-step distilled sampler; training at those four noise levels with perceptual and adversarial losses recovered it. Built a web tool where artists upload before/after pairs and get a trained, testable effect without an engineer.
+        </p>
+        <ul class="tags"><li>diffusion</li><li>LoRA</li><li>few-shot</li></ul>
+      </div>
+    </article>
+
     <article class="project project--side">
       <div class="project__body">
         <h4>AI Eraser</h4>
@@ -111,20 +125,6 @@
       </div>
       <div class="gallery">
         <figure class="shot" style="--r: 0.7500"><div class="media" data-kind="video" data-src="assets/media/expansion.mp4" data-label="AI image expansion demo"></div></figure>
-      </div>
-    </article>
-
-    <!-- Generative Retouching: no media yet. Add a gallery row (before/after lips, tool screenshot) when available. -->
-    <article class="project">
-      <div class="project__body">
-        <h4>Generative Retouching</h4>
-        <p>
-          Probed a reference lip-gloss effect with crafted inputs. It added gloss and fine texture that were not in the input, so no texture overlay or shader could produce it. Reproduced it with a LoRA on a distilled FLUX-family model trained from a handful of before/after pairs.
-        </p>
-        <p>
-          A LoRA trained on the base model lost much of its effect under the four-step distilled sampler; training at those four noise levels with perceptual and adversarial losses recovered it. Built a web tool where artists upload before/after pairs and get a trained, testable effect without an engineer.
-        </p>
-        <ul class="tags"><li>diffusion</li><li>LoRA</li><li>few-shot</li></ul>
       </div>
     </article>
 
