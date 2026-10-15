@@ -79,7 +79,7 @@
         <h3>SNOW AI Lab <span>· Machine Learning Engineer</span></h3>
         <time>Aug 2024 – now</time>
       </div>
-      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. Designed and shipped the eraser and image expansion, and continues to improve both. Also writes the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
+      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. Designed and shipped the eraser and image expansion, and continues to improve both. Now also building generative retouching, starting with lips. Writes the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
     </div>
 
     <article class="project project--side">
@@ -114,11 +114,25 @@
       </div>
     </article>
 
+    <!-- Generative Retouching: no media yet. Add a gallery row (before/after lips, tool screenshot) when available. -->
+    <article class="project">
+      <div class="project__body">
+        <h4>Generative Retouching</h4>
+        <p>
+          Probed a reference lip-gloss effect with crafted inputs. It added gloss and fine texture that were not in the input, so no texture overlay or shader could produce it. Reproduced it with a LoRA on a distilled FLUX-family model trained from a handful of before/after pairs.
+        </p>
+        <p>
+          A LoRA trained on the base model lost much of its effect under the four-step distilled sampler; training at those four noise levels with perceptual and adversarial losses recovered it. Built a web tool where artists upload before/after pairs and get a trained, testable effect without an engineer.
+        </p>
+        <ul class="tags"><li>diffusion</li><li>LoRA</li><li>few-shot</li></ul>
+      </div>
+    </article>
+
     <article class="project">
       <div class="project__body">
         <h4>AI Cutout</h4>
         <p>
-          Added domain routing to cutout's segmentation. A lightweight router classifies each image and picks the base model or a domain-tuned adapter, so one deployment also handles graphics and patterns the base model struggled with.
+          Added domain routing to cutout's segmentation. A lightweight router classifies each image and picks the base model or a domain-tuned adapter, so one deployment also handles graphics and patterns the base model struggled with. In the weeks after launch, the feature's save and subscription rates doubled.
         </p>
         <p>
           Training and evaluation data comes from recurring failures in real user images, checked by people, because retraining on the model's own labels had stopped helping.
