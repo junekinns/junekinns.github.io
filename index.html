@@ -34,8 +34,8 @@
       <h1>June Kim</h1>
       <p class="hero__role">Machine Learning Engineer · SNOW Corp.</p>
       <p>
-        Works on AI photo editing. Came to ML from graphics, first with AR camera effects at SNOW, then with 3D
-        world-building tools at NAVER Z. Currently in UIUC's online MS in Computer Science.
+        Builds generative photo editing features at SNOW. Started in graphics, with AR camera effects at SNOW and
+        3D world-building tools at NAVER Z, before moving to machine learning.
       </p>
       <p class="hero__links">
         <a href="assets/June_Kim_CV.pdf" target="_blank" rel="noopener">CV</a>
@@ -52,7 +52,7 @@
   <section id="news">
     <h2><span class="num">01</span>News</h2>
     <ul class="news">
-      <li><time>Aug 2025</time><span>Started the online MS in Computer Science at <b>UIUC</b>.</span></li>
+      <li><time>Aug 2025</time><span>Started the online Master of Computer Science at <b>UIUC</b>.</span></li>
       <li><time>Aug 2023</time><span>Returned to <b>SNOW</b> as a machine learning engineer; moved into <b>SNOW AI Lab</b> in Aug 2024.</span></li>
       <li><time>Apr 2022</time><span>Joined <b>NAVER Z</b> as a Unity developer on ZEPETO.</span></li>
       <li><time>Jun 2020</time><span>Joined <b>SNOW</b> full-time as an AR software engineer.</span></li>
@@ -79,18 +79,18 @@
         <h3>SNOW AI Lab <span>· Machine Learning Engineer</span></h3>
         <time>Aug 2024 – now</time>
       </div>
-      <p class="era__overview">Paid AI editing features for SNOW's camera apps, serving millions of requests a month. Designed and shipped the eraser and image expansion, and continues to improve both. Now also building generative retouching, starting with lips. Writes the GPU inference services behind the eraser, expansion, and cutout with BentoML, LitServe, and FastAPI.</p>
+      <p class="era__overview">Premium AI editing features for SNOW's camera apps, serving millions of requests a month. Built object removal and image expansion from prototype to launch.</p>
     </div>
 
-    <!-- Generative Retouching: no media yet. Add a gallery row (before/after lips, tool screenshot) when available. -->
+    <!-- Generative Makeup: no media yet. Add a gallery row (before/after lips, tool screenshot) when available. -->
     <article class="project">
       <div class="project__body">
-        <h4>Generative Retouching</h4>
+        <h4>Generative Makeup</h4>
         <p>
-          Probed a reference lip-gloss effect with crafted inputs. It added gloss and fine texture that were not in the input, so no texture overlay or shader could produce it. Reproduced it with a LoRA on a distilled FLUX-family model trained from a handful of before/after pairs.
+          Trained a LoRA on a distilled FLUX-family model from a few before/after pairs to reproduce a lip-gloss effect.
         </p>
         <p>
-          A LoRA trained on the base model lost much of its effect under the four-step distilled sampler; training at those four noise levels with perceptual and adversarial losses recovered it. Built a web tool where artists upload before/after pairs and get a trained, testable effect without an engineer.
+          A LoRA trained on the base model lost most of the effect under the distilled four-step sampler; training at the sampler's own noise levels fixed it. Built a web tool where designers upload before/after pairs and get a trained effect back.
         </p>
         <ul class="tags"><li>diffusion</li><li>LoRA</li><li>few-shot</li></ul>
       </div>
@@ -100,13 +100,13 @@
       <div class="project__body">
         <h4>AI Eraser</h4>
         <p>
-          Designed the eraser system and built both of its APIs, masking and inpainting. Only the masked area is regenerated and blended seamlessly into the original.
+          Designed the object removal pipeline and built both of its services, segmentation and inpainting. Only the masked region is regenerated and blended back into the original.
         </p>
         <p>
-          With a standard loss, the inpainting LoRA kept redrawing erased objects and drifting color at the mask boundary, and more data didn't help. Reweighting the mask interior and boundary, plus a term that keeps everything outside the mask unchanged, reduced both noticeably.
+          With a standard loss, the inpainting LoRA kept redrawing erased objects and shifting color at the mask boundary. Reweighting the loss over the mask and adding a term that keeps the outside unchanged reduced both.
         </p>
         <p>
-          Tested masking backbones of several sizes. A smaller one with bf16 and GPU-side transforms cut the mask step about 8&times;, but side-by-side quality checks sent it back to the larger one.
+          Tested segmentation backbones of several sizes. A smaller one with bf16 and GPU-side preprocessing ran about 8&times; faster, but side-by-side quality checks sent it back to the larger one.
         </p>
         <ul class="tags"><li>diffusion</li><li>segmentation</li><li>LoRA</li><li>serving</li></ul>
       </div>
@@ -119,7 +119,7 @@
       <div class="project__body">
         <h4>AI Image Expansion</h4>
         <p>
-          Built image expansion from the first prototype to launch. Moved outpainting from a node-based workflow to a production pipeline without losing blend quality; very large expansions run in several passes.
+          Built image expansion from the first prototype to launch, moving the outpainting pipeline from a node-based prototype to production. Large expansions run in several passes.
         </p>
         <ul class="tags"><li>diffusion</li><li>LoRA</li></ul>
       </div>
@@ -132,10 +132,10 @@
       <div class="project__body">
         <h4>AI Cutout</h4>
         <p>
-          Added domain routing to cutout's segmentation. A lightweight router classifies each image and picks the base model or a domain-tuned adapter, so one deployment also handles graphics and patterns the base model struggled with. In the weeks after launch, the feature's save and subscription rates doubled.
+          Added domain routing to background removal: a lightweight classifier sends each image to the base segmentation model or a domain-tuned adapter. In the weeks after launch, the feature's save rate and subscription conversion doubled.
         </p>
         <p>
-          Training and evaluation data comes from recurring failures in real user images, checked by people, because retraining on the model's own labels had stopped helping.
+          Training and evaluation data comes from recurring failures in real user images, labeled by people.
         </p>
         <ul class="tags"><li>segmentation</li><li>fine-tuning</li></ul>
       </div>
@@ -151,7 +151,7 @@
       <div class="project__body">
         <h4>Content Safety</h4>
         <p>
-          Trained the in-house NSFW model that checks generated images, built its dataset, and set up an internal evaluation system to tune it.
+          Trained the in-house NSFW classifier that screens generated images, and built its dataset and evaluation pipeline.
         </p>
         <ul class="tags"><li>classification</li><li>evaluation</li></ul>
       </div>
@@ -163,14 +163,14 @@
         <h3>SNOW <span>· Machine Learning Engineer</span></h3>
         <time>Aug 2023 – Aug 2024</time>
       </div>
-      <p class="era__overview">Pilot projects.</p>
+      <p class="era__overview">Pilot projects before the AI Lab.</p>
     </div>
 
     <article class="project">
       <div class="project__body">
         <h4>Virtual Try-On</h4>
         <p>
-          Compared several open try-on models. The best one labeled every top as "upper wear" and lost details like hoods; fine-tuning it with garment captions fixed that.
+          Compared several open virtual try-on models. The best one labeled every top as "upper wear" and lost details like hoods; fine-tuning it with garment captions fixed that.
         </p>
       </div>
       <div class="gallery">
@@ -187,14 +187,14 @@
         <h3>NAVER Z <span>· Unity Developer</span></h3>
         <time>Apr 2022 – Aug 2023</time>
       </div>
-      <p class="era__overview">3D map creation tools for ZEPETO, an avatar social app.</p>
+      <p class="era__overview">3D world-building tools for ZEPETO, an avatar social platform.</p>
     </div>
 
     <article class="project">
       <div class="project__body">
         <h4>ZEPETO build it &amp; World Editor</h4>
         <p>
-          Part of the team that took the web version of build it from scratch to launch, and handled the server-side world data migration that kept existing worlds working. Also optimized terrain rendering with custom shaders.
+          Helped take the web version of build it from scratch to launch, including the server-side migration that kept existing worlds working. Also optimized terrain rendering with custom shaders.
         </p>
       </div>
       <div class="gallery gallery--fit">
@@ -215,7 +215,7 @@
         <h3>SNOW <span>· AR Software Engineer</span></h3>
         <time>Dec 2019 – Apr 2022</time>
       </div>
-      <p class="era__overview">Real-time camera effects, written in Lua and GLSL.</p>
+      <p class="era__overview">Real-time AR camera effects in Lua and GLSL.</p>
     </div>
 
     <article class="project">
@@ -234,7 +234,7 @@
       <div class="project__body">
         <h4>No-Code Effect Tool</h4>
         <p>
-          Turned common effects like split screens, 3D transitions and hair color into templates artists could reuse without writing code. Also made plugins for the in-house authoring tools.
+          Turned common effects into templates that artists could reuse without code, and built plugins for the in-house authoring tools.
         </p>
       </div>
       <div class="gallery gallery--fit">
@@ -259,8 +259,8 @@
     <h2><span class="num">03</span>Education</h2>
     <ul class="entries">
       <li>
-        <div class="entries__meta">2025 – now</div>
-        <div><b>University of Illinois Urbana-Champaign</b> · MS in Computer Science (online)</div>
+        <div class="entries__meta">2025 – 2026</div>
+        <div><b>University of Illinois Urbana-Champaign</b> · Master of Computer Science (online)</div>
       </li>
       <li>
         <div class="entries__meta">2017 – 2020</div>
