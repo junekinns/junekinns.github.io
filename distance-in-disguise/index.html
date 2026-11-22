@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Open Image-Editing Consistency Judge Is Mostly a Distance in Disguise</title>
-  <meta name="description" content="On human-preference editing benchmarks, a training-free source distance matches the best open VLM consistency judge; residual accuracy on pairs the distance gets wrong shows what open judges miss. AAAI-27 Student Abstract.">
+  <title>A Distance-to-Source Baseline and Residual Accuracy for Image-Editing Consistency Judges</title>
+  <meta name="description" content="A pick-the-output-closer-to-the-source rule ties a dedicated open consistency judge on EditReward-Bench; splitting accuracy by where the rule fails separates judges that aggregate accuracy does not. AAAI-27 Student Abstract.">
   <meta name="author" content="June Kim">
   <meta name="keywords" content="image editing, VLM judge, reward model, consistency, evaluation, residual accuracy">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="The Open Image-Editing Consistency Judge Is Mostly a Distance in Disguise">
-  <meta property="og:description" content="Residual accuracy reveals what open VLM consistency judges miss. AAAI-27 Student Abstract.">
+  <meta property="og:title" content="A Distance-to-Source Baseline and Residual Accuracy for Image-Editing Consistency Judges">
+  <meta property="og:description" content="A distance-to-source baseline and residual accuracy for image-editing consistency judges. AAAI-27 Student Abstract.">
   <meta property="og:url" content="https://junekinns.github.io/distance-in-disguise/">
   <meta property="og:image" content="https://junekinns.github.io/distance-in-disguise/static/teaser.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <meta name="citation_title" content="The Open Image-Editing Consistency Judge Is Mostly a Distance in Disguise: Residual Accuracy Reveals What It Misses">
+  <meta name="citation_title" content="A Distance-to-Source Baseline and Residual Accuracy for Image-Editing Consistency Judges (Student Abstract)">
   <meta name="citation_author" content="Kim, June">
   <meta name="citation_conference_title" content="AAAI Conference on Artificial Intelligence (Student Abstract and Poster Program)">
   <meta name="citation_publication_date" content="2027">
@@ -98,8 +98,7 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-2 publication-title">
-            The Open Image-Editing Consistency Judge Is Mostly a Distance in Disguise
-            <span class="subtitle-line">Residual Accuracy Reveals What It Misses</span>
+            A Distance-to-Source Baseline and Residual Accuracy for Image-Editing Consistency Judges
           </h1>
 
           <div class="is-size-5 publication-authors" style="margin-bottom: 0.4rem;">
@@ -138,10 +137,10 @@
 
 <section class="section teaser" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <img src="static/teaser.png" alt="Grouped bar chart. On pairs where a source-distance rule is right, the open consistency judge PVC-Judge and the API model Gemini-3.8-Flash both reach about 0.9. On pairs where the distance is wrong, PVC-Judge drops to 0.44 on EditReward-Bench and 0.61 on VCReward-Bench, while Gemini-3.8-Flash reaches 0.72 and 0.77.">
+    <img src="static/teaser.png" alt="Grouped bar chart. On pairs where the source-distance rule is right, PVC-Judge, Claude Sonnet 5.5 and Gemini-3.8-Flash all reach 0.88 to 0.94. On residual pairs where the rule is wrong, PVC-Judge scores 0.44 on EditReward-Bench and 0.60 on VCReward-Bench, Claude Sonnet 5.5 0.57 and 0.62, and Gemini-3.8-Flash 0.72 and 0.73.">
     <p class="caption">
-      The open consistency judge is accurate where a training-free source distance is right, and drops toward chance where it is wrong.
-      A current API model solves many of those <em>residual</em> pairs.
+      Every judge is accurate where a source-distance rule is right and much less so where it is wrong.
+      Two API judges whose overall accuracy on EditReward-Bench differs by 1.3pp are 15pp apart on these <em>residual</em> pairs.
     </p>
   </div>
 </section>
@@ -153,14 +152,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Open VLM judges are used as RL rewards and benchmark evaluators for whether an image edit preserved what it should not change (<em>consistency</em>).
-            We ask what such a judge has learned beyond a training-free rule, <em>pick the output closer to the source</em>.
-            On EditReward-Bench the best of nine distance variants (DINOv2, 0.787) is not significantly different from a dedicated 8B consistency judge (0.794) and above the other open judges we tested (0.699&ndash;0.720).
-            The judge is accurate where distance works (0.89&ndash;0.90 on pairs DINOv2 gets right) but not where it fails (0.44&ndash;0.61), on two benchmarks.
-            We call the latter <em>residual accuracy</em>.
-            Many residual pairs carry a learnable signal rather than pure label noise: a current API model (Gemini-3.8-Flash) reaches 0.72&ndash;0.77 on them while staying close to the open judge elsewhere, which accounts for 80&ndash;96% of its advantage.
-            Aggregate accuracy hides this: a training trick that adds +6pp aggregate does not raise residual accuracy.
-            We propose residual accuracy, reported jointly with accuracy on distance-right pairs, as a target for open consistency rewards.
+            Judges that score whether an image edit preserved what it should not change (<em>consistency</em>) are validated by pairwise agreement with human preferences.
+            We add a baseline that two such benchmarks omit: <em>pick the output closer to the source</em>, computed with a frozen image encoder.
+            On EditReward-Bench this rule (0.787) is statistically indistinguishable from a dedicated open 8B judge (0.794) and above three other open judges; five of six newer encoders give the same result.
+            On all 3,506 pairs of VCReward-Bench the dedicated judge leads by 7.7pp, mostly on three reference-image tasks.
+            Splitting accuracy by whether the rule is right is more informative than aggregate accuracy: every judge we tested is far more accurate where the rule is right (0.73&ndash;0.94) than where it is wrong (0.44&ndash;0.77), and judges differ mainly on the latter.
+            On these <em>residual</em> pairs, two API judges whose overall accuracy differs by 1.3pp are 15pp apart.
+            One caveat limits the use of residual accuracy as a training target: on residual pairs the human consistency label usually coincides with the instruction-following label.
           </p>
         </div>
       </div>
@@ -174,10 +172,10 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-centered">Key Findings</h2>
         <ul class="takeaways content">
-          <li><span class="n">1</span>A plain image distance to the source (DINOv2) is statistically tied with the best open consistency judge on EditReward-Bench (0.787 vs. 0.794), and beats the other open judges.</li>
-          <li><span class="n">2</span>The open judge agrees with the distance on 75&ndash;82% of pairs. Where the distance is wrong, the judge is mostly wrong too (residual accuracy 0.44&ndash;0.61).</li>
-          <li><span class="n">3</span>Residual pairs are not just label noise: Gemini-3.8-Flash gets 0.72&ndash;0.77 on them, which is 80&ndash;96% of its advantage over the open judge.</li>
-          <li><span class="n">4</span>Aggregate accuracy can rise by making a judge more distance-like. Report residual accuracy next to it.</li>
+          <li><span class="n">1</span>A source-distance rule (DINOv2) is statistically tied with a dedicated open 8B consistency judge on EditReward-Bench (0.787 vs. 0.794). On VCReward-Bench the judge leads by 7.7pp, mostly on three reference-image tasks where the rule is near chance.</li>
+          <li><span class="n">2</span>Every judge we tested, open or API, is more accurate on pairs the rule gets right (0.73&ndash;0.94) than on residual pairs (0.44&ndash;0.77).</li>
+          <li><span class="n">3</span>Residual accuracy separates judges that aggregate accuracy does not: Gemini-3.8-Flash and Claude Sonnet 5.5 are 1.3pp apart overall but 15pp apart on residual pairs.</li>
+          <li><span class="n">4</span>On residual pairs the consistency winner is usually also the prompt-following winner (87% on labelled EditReward-Bench pairs). Check what residual labels measure before training on them.</li>
         </ul>
       </div>
     </div>
@@ -191,7 +189,7 @@
       <button class="copy-btn" type="button" onclick="copyBib(this)"><i class="fas fa-copy"></i>&nbsp;Copy</button>
     </div>
 <pre id="bibtex"><code>@inproceedings{kim2027distance,
-  title     = {The Open Image-Editing Consistency Judge Is Mostly a Distance in Disguise: Residual Accuracy Reveals What It Misses (Student Abstract)},
+  title     = {A Distance-to-Source Baseline and Residual Accuracy for Image-Editing Consistency Judges (Student Abstract)},
   author    = {Kim, June},
   booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
   year      = {2027}
